@@ -1,0 +1,54 @@
+Download the kafka from this url : 
+
+Kafka with ZooKeeper
+Run the following commands in order to start all services in the correct order:
+
+# Start the ZooKeeper service
+type : C:\kafka_2.13-3.9.0\bin\windows>zookeeper-server-start.bat ..\..\config\zookeeper.properties
+go to folder and type  - zookeeper-server-start.bat ..\..\config\zookeeper.properties
+
+extra info is looking that below means , zookeeper start successfully
+[2024-11-13 16:31:01,572] INFO binding to port 0.0.0.0/0.0.0.0:2181 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+
+last line of zookeeper:
+[2024-11-13 18:53:09,886] INFO Creating new log file: log.18c (org.apache.zookeeper.server.persistence.FileTxnLog)
+---------------------------------------
+start the kafka apche server :
+kafka-server-start.bat ..\..\config\server.properties
+
+cmd:
+C:\kafka_2.13-3.9.0\bin\windows>kafka-server-start.bat ..\..\config\server.properties
+
+last line :
+[2024-11-13 18:54:43,755] INFO [GroupMetadataManager brokerId=0] Finished loading offsets and group metadata from __consumer_offsets-28 in 0 milliseconds for epoch 0, of which 0 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+
+----------------------------------------
+Create new topic with kafka-topics:
+kafka-topics.bat --create --topic user-topic --bootstrap-server localhost:9092
+use the cmd:
+C:\kafka_2.13-3.9.0\bin\windows>kafka-topics.bat --create --topic user-topic2 --bootstrap-server localhost:9092
+Created topic user-topic.
+
+Step 4: Write some events into the topic
+cmd:
+kafka-console-producer.bat --topic user-topic2 --bootstrap-server localhost:9092
+C:\kafka_2.13-3.9.0\bin\windows>kafka-topics.bat --create --topic user-topic2 --bootstrap-server localhost:9092
+Created topic user-topic2.
+
+C:\kafka_2.13-3.9.0\bin\windows>kafka-console-producer.bat --topic user-topic2 --bootstrap-server localhost:9092
+>Hi Nishant
+>where are you
+--------------------------------------------
+Step 5: Read the events
+Open another terminal session and run the console consumer client to read the events you just created:
+
+cmd : kafka-console-consumer.bat --topic user-topic2 --from-beginning --bootstrap-server localhost:9092
+
+
+C:\kafka_2.13-3.9.0\bin\windows>kafka-console-consumer.bat --topic user-topic2 --from-beginning --bootstrap-server localhost:9092
+Hi Nishant
+where are you ?
+
+--------------------------------------
+
+
